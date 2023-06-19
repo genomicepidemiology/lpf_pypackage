@@ -25,7 +25,7 @@ def batch_starter(analysis_type, batch_json):
         json_list = create_individual_json_files(batch_json)
 
     else:
-        json_list = [data]
+        json_list = [batch_json]
 
     for item in json_list:
         data = json.load(open(item))
