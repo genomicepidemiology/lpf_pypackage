@@ -1,13 +1,15 @@
 import sys
 import os
-import argparse
-import util.md5 as md5
-from joblib import Parallel, delayed
-import sqlCommands as sqlCommands
 import datetime
 import json
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
+
+import lpf.util.md5 as md5
+from joblib import Parallel, delayed
+import lpf.sqlCommands as sqlCommands
+
+
 
 def lpf_analysis(jobslist, i):
     """Start analysis"""
