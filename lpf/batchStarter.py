@@ -26,7 +26,7 @@ def batch_starter(analysis_type, batch_json):
 
     else:
         json_list = [batch_json]
-
+    jobslist = []
     for item in json_list:
         data = json.load(open(item))
         input_file = data['input_file']
