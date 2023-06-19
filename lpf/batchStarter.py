@@ -6,6 +6,9 @@ from joblib import Parallel, delayed
 import sqlCommands as sqlCommands
 import datetime
 import json
+
+sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
+
 def lpf_analysis(jobslist, i):
     """Start analysis"""
     try:
