@@ -21,6 +21,7 @@ def lpf_analysis(jobslist, i):
 def batch_starter(analysis_type, batch_json):
     with open(batch_json) as infile:
         data = json.load(infile)
+    print (data)
     sys.exit(len(data))
     json_list = create_individual_json_files(batch_json)
     jobslist = []
