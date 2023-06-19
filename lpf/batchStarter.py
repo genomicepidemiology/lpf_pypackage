@@ -22,12 +22,11 @@ def batch_starter(analysis_type, batch_json):
     with open(batch_json) as infile:
         data = json.load(infile)
     if 'batch_runs' in data:
-        print ("Batch runs found")
+        json_list = create_individual_json_files(batch_json)
+
     else:
-        print (data)
-    sys.exit(len(data))
-    json_list = create_individual_json_files(batch_json)
-    jobslist = []
+        json_list = [data]
+
     for item in json_list:
         data = json.load(open(item))
         input_file = data['input_file']
