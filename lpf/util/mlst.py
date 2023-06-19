@@ -77,10 +77,10 @@ def derive_mlst(species, found_genes, template_depth):
             #Simply selecting highest depth hits but gives warning!
             if template_depth != 'skip':
                 mlst_genes = select_highest_depth_alleles(found_genes, template_depth, expected_genes, multiple_allele_list)
-            mlst_type = look_up_mlst("/home/people/malhal/nano_gene_finder/databases/mlst_db/{0}/{0}.tsv".format(species), mlst_genes, expected_genes)
+            mlst_type = look_up_mlst("/opt/lpf_databases/mlst_db/{0}/{0}.tsv".format(species), mlst_genes, expected_genes)
             mlst_type += '+'
         else:
-            mlst_type = look_up_mlst("/home/people/malhal/nano_gene_finder/databases/mlst_db/{0}/{0}.tsv".format(species), mlst_genes, expected_genes)
+            mlst_type = look_up_mlst("/opt/lpf_databases/mlst_db/{0}/{0}.tsv".format(species), mlst_genes, expected_genes)
         if not check_allele_template_coverage:
             mlst_type += '*'
         return mlst_type, expected_genes, mlst_genes
