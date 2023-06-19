@@ -139,9 +139,14 @@ def bacteria_analysis_pipeline(bacteria_parser):
 
     try:
         preparePDF.prepare_alignment_pdf(bacteria_parser)
-        pdfReport.compile_alignment_report(bacteria_parser)
     except:
         bacteria_parser.logger.error("Error in prepare alignment pdf")
+        bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
+
+    try:
+        pdfReport.compile_alignment_report(bacteria_parser)
+    except:
+        bacteria_parser.logger.error("Error in compile alignment report")
         bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
 
     sqlCommands.sql_update_status_table('Analysis completed', bacteria_parser.data.sample_name, '10', bacteria_parser.data.entry_id, bacteria_parser.data.sql_db)
