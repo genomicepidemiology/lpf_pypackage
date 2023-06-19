@@ -139,8 +139,9 @@ def bacteria_analysis_pipeline(bacteria_parser):
 
     try:
         preparePDF.prepare_alignment_pdf(bacteria_parser)
-    except:
+    except Exception as e:
         bacteria_parser.logger.error("Error in prepare alignment pdf")
+        bacteria_parser.logger.error(e)
         bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
 
     try:
