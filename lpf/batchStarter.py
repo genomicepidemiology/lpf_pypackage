@@ -39,7 +39,7 @@ def batch_starter(analysis_type, batch_json):
         except Exception as e:
             sys.exit("LocalPathogenFinder: Error: {}. lpf was NOT run.".format(e))
 
-        cmd = '~/anaconda3/bin/conda run -n lpf {} -json {}'.format(analysis_type, item)
+        cmd = '~/anaconda3/bin/conda run -n lpf lpf {} -json {}'.format(analysis_type, item)
         print (cmd)
         jobslist.append(cmd)
 
