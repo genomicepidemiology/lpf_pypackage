@@ -113,6 +113,7 @@ class BacteriaParser():
             self.data.mlst_type = None
             self.logger.info("Kmergenetyper didn't produce any results. Skipping MLST analysis")
         else:
+            self.logger.info("Kmergenetyper produced results. Parsing MLST results for species: {}".format(self.data.mlst_species))
             if self.data.mlst_species != None:
                 self.data.mlst_genes, self.data.mlst_genes_depths = kmaUtils.parse_kma_res_and_depth('{}/finders/mlst/{}.res'.format(self.data.target_dir, self.data.sample_name))
                 self.data.mlst_type, self.data.expected_genes, self.data.st_included_mlst_genes = mlst.derive_mlst(self.data.mlst_species, self.data.mlst_genes, self.data.mlst_genes_depths)

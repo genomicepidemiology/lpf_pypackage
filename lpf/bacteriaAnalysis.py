@@ -89,10 +89,14 @@ def bacteria_analysis_pipeline(bacteria_parser):
     except:
         bacteria_parser.logger.error("Error in derive mlst species")
         bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
+        bacteria_parser.data.mlst_type == None
 
-
-    if bacteria_parser.data.mlst_type != None:
-        print ("MLST result: {}".format(bacteria_parser.data.mlst_type))
+    try:
+        if bacteria_parser.data.mlst_type != None:
+            print ("MLST result: {}".format(bacteria_parser.data.mlst_type))
+    except:
+        bacteria_parser.logger.error("Error in get mlst type")
+        bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
 
     if bacteria_parser.data.template_number == None: #No reference template found
         bacteria_parser.run_assembly() #TBD
