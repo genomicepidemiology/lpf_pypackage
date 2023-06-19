@@ -383,7 +383,8 @@ def compile_virus_report(virus_parser):
     '''
     pdf.ln(10)
     pdf.set_font('Arial', '', 12)
-    pdf.cell(85, 5, "All analysis results and additional data can be found in /opt/lpf_analyses/{}".format(virus_parser.data.entry_id), 0, 1, 'L')
+    pdf.cell(85, 5, "All analysis results and additional data can be found in \n"
+                    " /opt/lpf_analyses/{}".format(virus_parser.data.entry_id), 0, 1, 'L')
 
 
     pdf.output("{}/{}.pdf".format(virus_parser.data.target_dir, virus_parser.data.entry_id), 'F')
