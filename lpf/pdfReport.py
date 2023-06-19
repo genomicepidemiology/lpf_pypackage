@@ -178,7 +178,7 @@ def compile_alignment_report(bacteria_parser):
 
     ''' Second Page '''
     pdf.add_page()
-    pdf.image("lpf//DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w/8.5, h=pdf.h/8.5)
+    pdf.image("/opt/lpf_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w/8.5, h=pdf.h/8.5)
     create_title(pdf, bacteria_parser.data.entry_id, "CGE Finder results")
 
     pdf.set_font('Arial', '', 10)
