@@ -1,4 +1,3 @@
-"""Wrapper for running multiple analysis. Currently, parallel analysis is not enabled."""
 import sys
 import os
 import argparse
@@ -7,16 +6,6 @@ from joblib import Parallel, delayed
 import sqlCommands as sqlCommands
 import datetime
 import json
-
-parser = argparse.ArgumentParser(description='.')
-parser.add_argument('-info', type=int, help='surveillance info')
-parser.add_argument('-batch_json', action="store", type=str, dest='batch_json', default="",
-                    help='batch json file')
-parser.add_argument('-analysis_type', action="store",
-                                 type=str, dest='analysis_type', default="bacteria",
-                                 help='bacteria, virus or metagenomic')
-args = parser.parse_args()
-
 def lpf_analysis(jobslist, i):
     """Start analysis"""
     try:
@@ -24,8 +13,7 @@ def lpf_analysis(jobslist, i):
     except Exception as e:
         sys.exit("LocalPathogenFinder: Error: {}. lpf was NOT run.".format(e))
 
-def main(analysis_type, batch_json):
-    """Main func"""
+def batch_starter(analysis_type, batch_json):
     json_list = create_individual_json_files(batch_json)
     jobslist = []
     for item in json_list:
@@ -59,6 +47,3 @@ def create_individual_json_files(batch_json):
             json.dump(item, outfile)
         output_list.append("/opt/lpf_metadata_json/individual_json/{}.json".format(entry_id))
     return output_list
-
-if __name__== "__main__":
-    main(args.analysis_type, args.batch_json)

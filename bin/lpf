@@ -15,7 +15,7 @@ from lpf.createBacteriaParser import BacteriaParser
 from lpf.createVirusParser import VirusParser
 from lpf.bacteriaAnalysis import bacteria_analysis_pipeline
 from lpf.virusAnalysis import virus_analysis_pipeline
-
+from lpf.quickTest import quick_test
 
 def main(arguments):
     """Main function"""
@@ -29,6 +29,8 @@ def main(arguments):
             virus_analysis_pipeline(virus_parser)
         elif arguments.subparser_name == 'metagenomic':
             pass
+        elif arguments.subparser_name == 'quick_test':
+            quick_test()
     except Exception as e:
         logging.exception(e)
         sys.exit()
@@ -52,6 +54,9 @@ if __name__ == '__main__':
                              help='Metagenomic sample. Currently under development. Does not do anything.',
                              )
     metagenomic_parser.add_argument('-json', action="store", type=str, default="", dest="json")
+    quick_test_parser = subparsers.add_parser('quick_test',
+                                help='Quick test',
+                                )
     update_parser = subparsers.add_parser('update',
                                             help='Update',
                                             )
