@@ -27,7 +27,7 @@ def parse_kma_res(filename):
 def parse_kma_res_and_depth(file):
     genes = []
     template_depth = []
-    with open('file', 'r') as f:
+    with open(file, 'r') as f:
         for line in f:
             if not line.startswith('#'):
                 genes.append(line.strip().split('\t')[0])
