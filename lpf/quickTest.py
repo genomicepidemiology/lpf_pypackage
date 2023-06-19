@@ -5,8 +5,7 @@ import argparse
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
 
-from batchStarter import batch_starter
-
+from lpf.batchStarter import batch_starter
 import lpf.sqlCommands as sqlCommands
 
 
