@@ -5,6 +5,8 @@ from fpdf import FPDF
 import dataframe_image as dfi
 import pandas as pd
 
+sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
+
 
 def compile_assembly_report(bacteria_parser):
     pdf = FPDF()  # A4 (210 by 297 mm)
@@ -12,7 +14,7 @@ def compile_assembly_report(bacteria_parser):
 
     ''' First Page '''
     pdf.add_page()
-    pdf.image("/opt/lpf/local_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
+    pdf.image("/opt/lpf_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
     create_title(pdf, bacteria_parser.data.entry_id, "lpf analytical report, Version: {}".format(bacteria_parser.data.version))
     pdf.ln(20)
     pdf.set_font('Arial', '', 12)
@@ -35,7 +37,7 @@ def compile_assembly_report(bacteria_parser):
 
     ''' Second Page '''
     pdf.add_page()
-    pdf.image("/opt/lpf/local_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
+    pdf.image("/opt/lpf_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
     create_title(pdf, bacteria_parser.data.entry_id, "CGE Finder results")
 
     pdf.set_font('Arial', '', 10)
@@ -131,7 +133,7 @@ def compile_alignment_report(bacteria_parser):
 
     ''' First Page '''
     pdf.add_page()
-    pdf.image("/opt/lpf/local_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w/8.5, h=pdf.h/8.5)
+    pdf.image("/opt/lpf_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w/8.5, h=pdf.h/8.5)
 
     create_title(pdf, bacteria_parser.data.entry_id, "lpf analytical report, Version : {}".format(bacteria_parser.data.version))
     pdf.ln(5)
@@ -176,7 +178,7 @@ def compile_alignment_report(bacteria_parser):
 
     ''' Second Page '''
     pdf.add_page()
-    pdf.image("/opt/lpf/local_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w/8.5, h=pdf.h/8.5)
+    pdf.image("lpf//DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w/8.5, h=pdf.h/8.5)
     create_title(pdf, bacteria_parser.data.entry_id, "CGE Finder results")
 
     pdf.set_font('Arial', '', 10)
@@ -259,7 +261,7 @@ def compile_alignment_report(bacteria_parser):
 
     ''' Third Page '''
     pdf.add_page()
-    pdf.image("/opt/lpf/local_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
+    pdf.image("/opt/lpf_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
     create_title(pdf, bacteria_parser.data.entry_id, "Cluster phylogeny:")
 
     pdf.set_font('Arial', '', 10)
@@ -336,7 +338,7 @@ def compile_virus_report(virus_parser):
 
     ''' First Page '''
     pdf.add_page()
-    pdf.image("/opt/lpf/local_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
+    pdf.image("/opt/lpf_app/images/DTU_Logo_Corporate_Red_RGB.png", x=175, y=10, w=pdf.w / 8.5, h=pdf.h / 8.5)
     create_title(pdf, virus_parser.data.entry_id, "lpf virus report, Version: {}".format(virus_parser.data.version))
     pdf.ln(20)
     pdf.set_font('Arial', '', 12)

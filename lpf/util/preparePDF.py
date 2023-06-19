@@ -6,6 +6,9 @@ import dataframe_image as dfi
 import pandas as pd
 import json
 import csv
+
+sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')] + sys.path
+
 def prepare_alignment_pdf(bacteria_parser):
     if not os.path.exists(bacteria_parser.data.target_dir + "/pdf_resources"):
         os.mkdir(bacteria_parser.data.target_dir + "/pdf_resources")
