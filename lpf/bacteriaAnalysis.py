@@ -86,6 +86,7 @@ def bacteria_analysis_pipeline(bacteria_parser):
                             bacteria_parser.data.target_dir + "/finders/mlst").run()
 
         bacteria_parser.get_mlst_type()
+        bacteria_parser.logger.info("MLST type: {}".format(bacteria_parser.data.mlst_type))
     except:
         bacteria_parser.logger.error("Error in derive mlst species")
         bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
