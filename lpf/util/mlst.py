@@ -83,9 +83,9 @@ def derive_mlst(species, found_genes, template_depth):
             mlst_type = look_up_mlst("/opt/lpf_databases/mlst_db/{0}/{0}.tsv".format(species), mlst_genes, expected_genes)
         if not check_allele_template_coverage:
             mlst_type += '*'
-        return mlst_type, expected_genes, mlst_genes
+        return mlst_type, expected_genes, list(mlst_genes)
     else:
-        return 'Unknown ST', expected_genes, ''
+        return 'Unknown ST', expected_genes, []
 
 
 def check_allele_template_coverage(mlst_genes, template_depth, found_genes):
