@@ -24,7 +24,7 @@ def bacteria_analysis_pipeline(bacteria_parser):
             bacteria_parser.data.target_dir + "/reference_mapping",
             bacteria_parser.data.bacteria_db,
             "-ID 0 -nf -mem_mode -sasm -ef -1t1").run()
-    except:
+    except Exception as e:
         bacteria_parser.logger.error("Error in reference mapping")
         bacteria_parser.logger.error("Unexpected error: {}".format(sys.exc_info()[0]))
 
