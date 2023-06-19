@@ -19,6 +19,9 @@ def lpf_analysis(jobslist, i):
         sys.exit("LocalPathogenFinder: Error: {}. lpf was NOT run.".format(e))
 
 def batch_starter(analysis_type, batch_json):
+    with open(batch_json) as infile:
+        item_dict = json.loads(json_data)
+    sys.exit(len(item_dict))
     json_list = create_individual_json_files(batch_json)
     jobslist = []
     for item in json_list:
