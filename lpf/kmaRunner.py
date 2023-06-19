@@ -18,14 +18,14 @@ class KMARunner():
     def check_for_kma(self):
         """Checks if kma is installed"""
         try:
-            subprocess.call(["{}/bin/kma".format(str(Path.home()))], stdout=open(os.devnull, 'wb'))
+            subprocess.call(["kma".format(str(Path.home()))], stdout=open(os.devnull, 'wb'))
         except FileNotFoundError:
             self.logger.info("kma is not installed in the local bin ~/bin/")
             sys.exit(1)
 
     def run(self):
         """runs kma"""
-        kma_cmd = "{}/bin/kma -t_db {} -i {} -o {} {}".format(str(Path.home()), self.reference_database, self.input, self.output, self.argument_string)
+        kma_cmd = "kma -t_db {} -i {} -o {} {}".format(str(Path.home()), self.reference_database, self.input, self.output, self.argument_string)
         self.logger.info("Running KMA with the following command: {}".format(kma_cmd))
         self.logger.info(kma_cmd)
         os.system(kma_cmd)

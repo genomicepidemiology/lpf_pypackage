@@ -5,7 +5,7 @@ import subprocess
 
 def ccphylo_dist(bacteria_parser):
     make_ccphylo_folder(bacteria_parser)
-    cmd = "~/bin/ccphylo dist --input {0}/phytree_output/* --reference \"{1}\" --min_cov 0.01" \
+    cmd = "ccphylo dist --input {0}/phytree_output/* --reference \"{1}\" --min_cov 0.01" \
           " --normalization_weight 0 --output {0}/phytree_output/distance_matrix" \
         .format(bacteria_parser.data.target_dir, bacteria_parser.data.reference_header_text)
 
@@ -51,12 +51,12 @@ def make_ccphylo_folder(bacteria_parser):
         if os.path.exists(item):
             os.system("cp {} {}/phytree_output/.".format(item, bacteria_parser.data.target_dir))
     header_name = bacteria_parser.data.reference_header_text.split()[0] + '.fsa'
-    cmd = "~/bin/kma seq2fasta -t_db {} -seqs {} > {}/phytree_output/{}" \
+    cmd = "kma seq2fasta -t_db {} -seqs {} > {}/phytree_output/{}" \
         .format(bacteria_parser.data.bacteria_db, bacteria_parser.data.template_number, bacteria_parser.data.target_dir, header_name)
     os.system(cmd)
 
 def ccphylo_tree(bacteria_parser):
-    cmd = "~/bin/ccphylo tree --input {0}/phytree_output/distance_matrix --output {0}/phytree_output/tree.newick"\
+    cmd = "ccphylo tree --input {0}/phytree_output/distance_matrix --output {0}/phytree_output/tree.newick"\
         .format(bacteria_parser.data.target_dir)
     proc = subprocess.Popen(cmd, shell=True,
                             stdout=subprocess.PIPE, )
