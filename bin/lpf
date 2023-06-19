@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+
+import argparse
+import sys
+import logging
+import os
+
+sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)),'..')] + sys.path
+
+from lpf.version import __version__
+
+__author__ = "Malte B. Hallgren"
+
+from lpf.createBacteriaParser import BacteriaParser
+from lpf.createVirusParser import VirusParser
+from lpf.bacteriaAnalysis import bacteria_analysis_pipeline
+from lpf.virusAnalysis import virus_analysis_pipeline
+
+
+def main(arguments):
+    """Main function"""
+    try:
+        if arguments.subparser_name == 'bacteria':
+            bacteria_parser = BacteriaParser(arguments.json)
+            bacteria_analysis_pipeline(bacteria_parser)
+            pass
+        elif arguments.subparser_name == 'virus':
+            virus_parser = VirusParser(arguments.json)
+            virus_analysis_pipeline(virus_parser)
+        elif arguments.subparser_name == 'metagenomic':
+            pass
+    except Exception as e:
+        logging.exception(e)
+        sys.exit()
+
+
+if __name__ == '__main__':
+    # initialize the options parser
+    parser = argparse.ArgumentParser('Local Pathogen Finder', add_help=False)
+    subparsers = parser.add_subparsers(help="--", dest='subparser_name')
+
+    bacteria_parser = subparsers.add_parser('bacteria',
+                                             help='Bacteria analysis'
+                                             )
+    bacteria_parser.add_argument('-json', action="store", type=str, default="", dest="json")
+
+    virus_parser = subparsers.add_parser('virus',
+                            help='Virus sample. Currently under development',
+                             )
+    virus_parser.add_argument('-json', action="store", type=str, default="", dest="json")
+    metagenomic_parser = subparsers.add_parser('metagenomic',
+                             help='Metagenomic sample. Currently under development. Does not do anything.',
+                             )
+    metagenomic_parser.add_argument('-json', action="store", type=str, default="", dest="json")
+    update_parser = subparsers.add_parser('update',
+                                            help='Update',
+                                            )
+    clean_parser = subparsers.add_parser('clean',
+                                            help='Clean',
+                                            )
+
+
+    parser.add_argument('--version', action='version', version='%(prog)s ' + __version__)
+    parser.add_argument('-h', '--help', action='help', help='Show this help message and exit')
+
+
+    args = parser.parse_args()
+
+    try:
+        main(args)
+    except Exception as e:
+        logging.error(e, exc_info=True)
+        r_type = None
+        raise
